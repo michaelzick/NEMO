@@ -14,6 +14,8 @@ var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_I
 
 var dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 var dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;  
+var dbHost = process.env.OPENSHIFT_MONGODB_DB_HOST;
+var dbPort = parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT);
 
 http.createServer(app).listen(port, ipaddr, function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -24,7 +26,7 @@ app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
-  MongoClient.connect("mongodb://process.env.OPENSHIFT_MONGODB_HOST:process.env.OPENSHIFT_MONGODB_PORT/nemo", dbUser, dbPass, {authdb: "admin"}, function(err, db) {
+  MongoClient.connect(dbHost, dbPort, dbUser, dbPass, {authdb: "admin"}, function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
