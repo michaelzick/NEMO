@@ -31,7 +31,6 @@ app.get('/', function(req, res){
       console.log("We are connected");
     }
     db.collection("surfers", function(err, collection) {
-      console.log(collection);
       collection.find().toArray(function(err, result) {
         var surfers = [];
         if (err) {
@@ -49,7 +48,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function (req, res) {
-  MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/nemo", {authdb: "admin"}, function(err, db) {
+  MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/nemo", function(err, db) {
     db.collection("surfers", function(err, collection) {
       collection.insert(
             {
