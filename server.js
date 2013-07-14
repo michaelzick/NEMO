@@ -24,12 +24,12 @@ var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
   MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
-    // if(!err) {
-    //   console.log("We are connected");
-    // }
-    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-    //   if(err){ throw err };
-    // });
+    if(!err) {
+      console.log("We are connected");
+    }
+    db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
+      if(err){ throw err };
+    });
     // db.collection("surfers", function(err, collection) {
     //   collection.find().toArray(function(err, result) {
     //     var surfers = [];
