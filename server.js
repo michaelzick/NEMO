@@ -31,6 +31,7 @@ app.get('/', function(req, res){
       console.log("We are connected");
     }
     db.collection("surfers", function(err, collection) {
+      console.log(collection);
       collection.find().toArray(function(err, result) {
         var surfers = [];
         if (err) {
