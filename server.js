@@ -27,7 +27,6 @@ app.get('/', function(req, res){
     }
     db.collection("surfers", function(err, collection) {
       collection.find().toArray(function(err, result) {
-        console.log(result);
         var surfers = [];
         if (err) {
           throw err;
