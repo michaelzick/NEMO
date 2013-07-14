@@ -26,7 +26,7 @@ app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
-  MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/", {authdb: "admin"}, function(err, db) {
+  MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
