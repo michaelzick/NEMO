@@ -23,7 +23,7 @@ app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/nemo', function(req, res){
-  MongoClient.connect("mongodb://127.9.254.130:27017/nemo", function(err, db) {
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
