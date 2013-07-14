@@ -13,7 +13,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP;  
 
 http.createServer(app).listen(port, ipaddr, function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + port);
 });
 
 // MongoDB
