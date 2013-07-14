@@ -10,9 +10,7 @@ var express = require('express')
 var app = express();
 
 var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || 8080;  
-var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP;
-var dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
-var dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP;  
 
 http.createServer(app).listen(port, ipaddr, function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -22,14 +20,11 @@ http.createServer(app).listen(port, ipaddr, function(){
 app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
-app.get('/nemo', function(req, res){
-  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT", function(err, db) {
+app.get('/', function(req, res){
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
-    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-    //   if(err){ throw err };
-    // });
     db.collection("surfers", function(err, collection) {
       collection.find().toArray(function(err, result) {
         var surfers = [];
@@ -47,24 +42,21 @@ app.get('/nemo', function(req, res){
   });
 });
 
-// app.post('/', function (req, res) {
-//   MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
-//     db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-//       if(err){ throw err };
-//     });
-//     db.collection("surfers", function(err, collection) {
-//       collection.insert(
-//             {
-//               number: parseInt(req.body.custNum),
-//               firstName: req.body.firstName,
-//               lastName: req.body.lastName
-//             }, function (err, results, fields) {
-//           if (err) throw err;
-//           else res.send('success');
-//       });
-//     });
-//   });
-// });
+app.post('/', function (req, res) {
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
+    db.collection("surfers", function(err, collection) {
+      collection.insert(
+            {
+              number: parseInt(req.body.custNum),
+              firstName: req.body.firstName,
+              lastName: req.body.lastName
+            }, function (err, results, fields) {
+          if (err) throw err;
+          else res.send('success');
+      });
+    });
+  });
+});
 // /MongoDB
 
 app.engine('html', require('ejs').renderFile);
