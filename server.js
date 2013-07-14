@@ -20,7 +20,7 @@ http.createServer(app).listen(port, ipaddr, function(){
 
 // MongoDB
 app.use(express.bodyParser());
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb');
 
 app.get('/', function(req, res){
   MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
