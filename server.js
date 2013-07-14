@@ -27,21 +27,21 @@ app.get('/nemo', function(req, res){
     if(!err) {
       console.log("We are connected");
     }
-    db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-      if(err){ throw err };
-      db.collection("surfers", function(err, collection) {
-        collection.find().toArray(function(err, result) {
-          var surfers = [];
-          if (err) {
-            throw err;
-          } else {
-            for (i=0; i<result.length; i++) {
-              surfers[i] = result[i];
-            }
-            // surfers.reverse();
-            res.render('index.html', {surfers: surfers});
+    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
+    //   if(err){ throw err };
+    // });
+    db.collection("surfers", function(err, collection) {
+      collection.find().toArray(function(err, result) {
+        var surfers = [];
+        if (err) {
+          throw err;
+        } else {
+          for (i=0; i<result.length; i++) {
+            surfers[i] = result[i];
           }
-        });
+          // surfers.reverse();
+          res.render('index.html', {surfers: surfers});
+        }
       });
     });
   });
