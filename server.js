@@ -23,13 +23,13 @@ app.use(express.bodyParser());
 var MongoClient = require('mongodb');
 
 app.get('/', function(req, res){
-  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
-    db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-      if(err){ throw err };
-    });
+    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
+    //   if(err){ throw err };
+    // });
     // db.collection("surfers", function(err, collection) {
     //   collection.find().toArray(function(err, result) {
     //     var surfers = [];
