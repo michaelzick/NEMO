@@ -18,7 +18,7 @@ var dbHost = process.env.OPENSHIFT_MONGODB_DB_HOST;
 var dbPort = parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT);
 
 http.createServer(app).listen(port, ipaddr, function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + port);
 });
 
 // MongoDB
