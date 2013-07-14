@@ -22,30 +22,30 @@ http.createServer(app).listen(port, ipaddr, function(){
 app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
-// app.get('/', function(req, res){
-//   MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
-//     if(!err) {
-//       console.log("We are connected");
-//     }
-//     db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-//       if(err){ throw err };
-//     });
-//     db.collection("surfers", function(err, collection) {
-//       collection.find().toArray(function(err, result) {
-//         var surfers = [];
-//         if (err) {
-//           throw err;
-//         } else {
-//           for (i=0; i<result.length; i++) {
-//             surfers[i] = result[i];
-//           }
-//           // surfers.reverse();
-//           res.render('index.html', {surfers: surfers});
-//         }
-//       });
-//     });
-//   });
-// });
+app.get('/', function(req, res){
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
+    // if(!err) {
+    //   console.log("We are connected");
+    // }
+    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
+    //   if(err){ throw err };
+    // });
+    // db.collection("surfers", function(err, collection) {
+    //   collection.find().toArray(function(err, result) {
+    //     var surfers = [];
+    //     if (err) {
+    //       throw err;
+    //     } else {
+    //       for (i=0; i<result.length; i++) {
+    //         surfers[i] = result[i];
+    //       }
+    //       // surfers.reverse();
+    //       res.render('index.html', {surfers: surfers});
+    //     }
+    //   });
+    // });
+  });
+});
 
 // app.post('/', function (req, res) {
 //   MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/", function(err, db) {
