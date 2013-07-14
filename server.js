@@ -20,10 +20,10 @@ http.createServer(app).listen(port, ipaddr, function(){
 
 // MongoDB
 app.use(express.bodyParser());
-var MongoClient = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
-  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
+  MongoClient.connect("mongodb://127.9.254.130:27017/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
