@@ -22,28 +22,28 @@ http.createServer(app).listen(port, ipaddr, function(){
 app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
-app.get('/', function(req, res){
+app.get('/nemo', function(req, res){
   MongoClient.connect("mongodb://127.9.254.130:27017/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
-      db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
-        if(err){ throw err };
-      });
-      db.collection("surfers", function(err, collection) {
-        collection.find().toArray(function(err, result) {
-          var surfers = [];
-          if (err) {
-            throw err;
-          } else {
-            for (i=0; i<result.length; i++) {
-              surfers[i] = result[i];
-            }
-            // surfers.reverse();
-            res.render('index.html', {surfers: surfers});
-          }
-        });
-      });
     }
+    // db.authenticate(dbUser, dbPass, {authdb: "admin"},  function(err, res){
+    //   if(err){ throw err };
+    // });
+    // db.collection("surfers", function(err, collection) {
+    //   collection.find().toArray(function(err, result) {
+    //     var surfers = [];
+    //     if (err) {
+    //       throw err;
+    //     } else {
+    //       for (i=0; i<result.length; i++) {
+    //         surfers[i] = result[i];
+    //       }
+    //       // surfers.reverse();
+    //       res.render('index.html', {surfers: surfers});
+    //     }
+    //   });
+    // });
   });
 });
 
