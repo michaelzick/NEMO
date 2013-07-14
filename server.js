@@ -21,7 +21,7 @@ app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
-  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
@@ -43,7 +43,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function (req, res) {
-  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT/nemo", function(err, db) {
+  MongoClient.connect("mongodb://$OPENSHIFT_MONGODB_HOST:$OPENSHIFT_MONGODB_PORT", function(err, db) {
     db.collection("surfers", function(err, collection) {
       collection.insert(
             {
