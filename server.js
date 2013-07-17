@@ -16,7 +16,7 @@ http.createServer(app).listen(port, ipaddr, function(){
   console.log('Express server listening on port ' + port);
 });
 
-// MongoDB
+// DB
 app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
@@ -34,7 +34,6 @@ app.get('/', function(req, res){
           for (i=0; i<result.length; i++) {
             surfers[i] = result[i];
           }
-          // surfers.reverse();
           res.render('index.html', {surfers: surfers});
         }
       });
@@ -57,7 +56,7 @@ app.post('/', function (req, res) {
     });
   });
 });
-// /MongoDB
+// /DB
 
 app.engine('html', require('ejs').renderFile);
 
