@@ -21,12 +21,14 @@ http.createServer(app).listen(port, ipaddr, function(){
   console.log('Express server listening on port ' + port);
 });
 
-// MongoDB
+// DB
 app.use(express.bodyParser());
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/', function(req, res){
   MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/nemo", function(err, db) {
+    // FOR LOCAL DEVELOPMENT, CHANGE THE ABOVE LINE TO:
+    // MongoClient.connect("mongodb://localhost:27017/nemo", function(err, db) {
     if(!err) {
       console.log("We are connected");
     }
@@ -39,7 +41,6 @@ app.get('/', function(req, res){
           for (i=0; i<result.length; i++) {
             surfers[i] = result[i];
           }
-          // surfers.reverse();
           res.render('index.html', {surfers: surfers});
         }
       });
@@ -49,6 +50,8 @@ app.get('/', function(req, res){
 
 app.post('/', function (req, res) {
   MongoClient.connect("mongodb://"+dbUser+":"+dbPass+"@"+dbHost+":"+dbPort+"/nemo", function(err, db) {
+    // FOR LOCAL DEVELOPMENT, CHANGE THE ABOVE LINE TO:
+    // MongoClient.connect("mongodb://localhost:27017/nemo", function(err, db) {
     db.collection("surfers", function(err, collection) {
       collection.insert(
             {
@@ -62,7 +65,7 @@ app.post('/', function (req, res) {
     });
   });
 });
-// /MongoDB
+// /DB
 
 app.engine('html', require('ejs').renderFile);
 
