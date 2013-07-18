@@ -19,7 +19,7 @@ Seting up the database
 
 I've included a CSV file called "surfers.csv" in "your_app_name/mongo_exports/".
 
-Go to RockMongo for your OpenShift app, select "your_app_name_db" and import this CSV file.
+Go to the RockMongo URL for your OpenShift app, select "your_app_name_db" and import this CSV file.
 
 Local Setup Instructions
 ========================
@@ -56,7 +56,7 @@ Start the MongoDB server:
 
 `$ mongod`
 
-Then in a new window/tab:
+Then, in a new Terminal window/tab:
 
 `$ mongo`
 
@@ -71,7 +71,7 @@ Use Git commands in Terminal or use a Git management app (SourceTree, Tower, etc
 
 In your Git management app, create a new branch from master.
 
-In server.js, uncomment the local connection code and comment-out the code right above it.
+In server.js, uncomment the local connection code and comment-out the OpenShift connection code right above it.
 
 In Terminal, go to your project root:
 
