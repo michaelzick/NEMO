@@ -2,7 +2,7 @@ $(function () {
 	// contact form
     $('#contact_form .submit').click(function () {
         var userInfo = {
-            custNum: $('#cust_num_field').val(),
+            num: $('#num_field').val(),
             firstName: $('#first_name_field').val(),
             lastName: $('#last_name_field').val()
         };

@@ -55,7 +55,7 @@ app.post('/', function (req, res) {
     db.collection("surfers", function(err, collection) {
       collection.insert(
             {
-              number: parseInt(req.body.custNum),
+              number: parseInt(req.body.num),
               firstName: req.body.firstName,
               lastName: req.body.lastName
             }, function (err, results, fields) {
